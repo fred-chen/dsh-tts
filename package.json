@@ -1,6 +1,6 @@
 {
   "name": "dsh-tts",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "DeepSeek Harness 语音合成插件：调用 OpenAI 兼容 /v1/audio/speech 端点（默认 http://ai4090:8080/v1/audio，Qwen3-TTS），支持端点与模型自定义、CustomVoice 九大预置音色选择、语言/情绪/语速指令、输出格式与采样率等参数调节。",
   "type": "module",
   "main": "lib/index.js",
@@ -73,7 +73,7 @@
     }
   },
   "scripts": {
-    "test": "node test/core.test.mjs"
+    "test": "node test/core.test.mjs && node test/execute.test.mjs"
   },
   "repository": {
     "type": "git",
