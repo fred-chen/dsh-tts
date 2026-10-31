@@ -1,5 +1,6 @@
 // dsh-tts core 层单测：node test/core.test.mjs
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import {
   VOICE_PRESETS,
   buildSpeechPayload,
@@ -132,6 +133,16 @@ t("pickAudioModels: filters tts by capability and name", () => {
     ],
   });
   assert.deepEqual(out.map((m) => m.id), ["Qwen3-TTS-12Hz-1.7B-CustomVoice", "some-tts-extra"]);
+});
+
+// 版本一致性：package.json 与 lib/index.js 的 PLUGIN_VERSION 必须同步
+// （0.1.2 就因忘改常量让设置页徽章显示成了 v0.1.1）
+t("version parity package.json <-> PLUGIN_VERSION", () => {
+  const pkg = JSON.parse(fs.readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+  const src = fs.readFileSync(new URL("../lib/index.js", import.meta.url), "utf8");
+  const m = src.match(/const PLUGIN_VERSION = "([^"]+)"/);
+  assert.ok(m, "PLUGIN_VERSION constant found");
+  assert.equal(m[1], pkg.version, `PLUGIN_VERSION ${m[1]} != package.json ${pkg.version}`);
 });
 
 console.log(`\n${n} tests, exit=${process.exitCode || 0}`);
