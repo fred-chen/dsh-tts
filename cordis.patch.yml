@@ -1,0 +1,24 @@
+# dsh-tts — 语音合成
+#
+# 注册宿主插件行（设置桥 /api/dsh-tts/*、tts_generate 工具、音频流路由都在这一行里）。
+# 默认端点按当前环境设为 http://ai4090:8080/v1/audio（OpenAI 兼容 TTS，llama-swap 代理）。
+# apiKey 是 secret 字段，保存后设置页只显示“已保存”，不回传明文。
+#
+# model 可选（取决于服务端加载了哪个 checkpoint）：
+#   Qwen3-TTS-12Hz-1.7B-CustomVoice    预置音色 + instructions 调风格（推荐）
+#   Qwen3-TTS-12Hz-1.7B-VoiceDesign    voice 字段填自由音色描述
+# sampleRate 0 表示使用服务端原生采样率。
+- insert:
+    - id: dsh-tts
+      name: dsh-tts
+      config:
+        enabled: true
+        endpoint: http://ai4090:8080/v1/audio
+        model: Qwen3-TTS-12Hz-1.7B-CustomVoice
+        voice: uncle_fu
+        language: ""
+        instructions: ""
+        format: wav
+        sampleRate: 0
+        outputDir: .dsh-tts
+        timeoutSec: 300
