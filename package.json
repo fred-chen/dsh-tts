@@ -1,17 +1,19 @@
 {
   "name": "dsh-tts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "DeepSeek Harness 语音合成插件：调用 OpenAI 兼容 /v1/audio/speech 端点（默认 http://ai4090:8080/v1/audio，Qwen3-TTS），支持端点与模型自定义、CustomVoice 九大预置音色选择、语言/情绪/语速指令、输出格式与采样率等参数调节。",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
+    "./client": "./lib/client.js",
     "./core": "./lib/core.js",
     "./package.json": "./package.json"
   },
   "files": [
     "lib/index.js",
     "lib/core.js",
+    "lib/client.js",
     "cordis.patch.yml",
     "README.md",
     "README.zh.md",
@@ -34,13 +36,25 @@
     "@deepseek-ai/cordis": "^4.0.1",
     "@deepseek-ai/dsh-settings": "^0.1.7-rc.1 || ^0.2.0-rc.1",
     "@deepseek-ai/dsh-tools": "^0.1.7-rc.1 || ^0.2.0-rc.1",
-    "@deepseek-ai/schemastery": "^3.18.4"
+    "@deepseek-ai/schemastery": "^3.18.4",
+    "react": "^18.2.0"
   },
   "peerDependenciesMeta": {
-    "@deepseek-ai/cordis": { "optional": true },
-    "@deepseek-ai/dsh-settings": { "optional": true },
-    "@deepseek-ai/dsh-tools": { "optional": true },
-    "@deepseek-ai/schemastery": { "optional": true }
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-settings": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
   },
   "dsh": {
     "bundle": {
@@ -48,6 +62,14 @@
     },
     "engines": {
       "dsh": ">=0.1.7-rc.1"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-plugin-manager",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-tool"
+      ],
+      "platform": "web"
     }
   },
   "scripts": {

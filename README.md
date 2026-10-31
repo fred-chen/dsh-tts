@@ -4,8 +4,8 @@
 
 Ask the agent "speak this in Uncle Fu's voice" and get an audio file in your session workspace plus an in-browser playback link.
 
-- **`tts_generate` tool**: text → speech in one call (synthesize, save, playback URL)
-- **Configurable endpoint URL** for any OpenAI-compatible TTS server
+- **`tts_generate` tool**: text → speech in one call (synthesize, save, playback URL), with an inline `<audio>` card in the conversation (v0.1.2+)
+- **Configurable endpoint URL** for any OpenAI-compatible TTS server — visual settings card in the plugin manager (v0.1.2+); saving takes effect without restart
 - **9 preset voices** (CustomVoice): case-insensitive ids (`Uncle_Fu` → `uncle_fu`), language auto-inferred from the preset's native language
 - **VoiceDesign support**: with a `…-VoiceDesign` checkpoint, `voice` is a free-form voice description
 - **Style control**: `instructions` for emotion / tone / speaking pace

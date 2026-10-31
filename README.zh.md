@@ -6,7 +6,7 @@
 
 ## 特性
 
-- **`tts_generate` 工具**：文本 → 语音，一次调用完成合成、落盘、播放链接
+- **`tts_generate` 工具**：文本 → 语音，一次调用完成合成、落盘、播放链接；会话内工具卡片直接内嵌 `<audio>` 播放（v0.1.2+）
 - **端点可自定义**：设置页改 endpoint 即可对接任意 OpenAI 兼容 TTS 服务
 - **9 个预置音色**（CustomVoice）：大小写/驼峰写法都能识别（`Uncle_Fu` → `uncle_fu`），并按音色母语自动推断 `language`
 - **VoiceDesign 也支持**：模型是 `…-VoiceDesign` 时，`voice` 字段按自由音色描述使用（如「一位低沉沙哑的中年男声」）
@@ -61,7 +61,7 @@ cp -R /path/to/dsh-tts node_modules/dsh-tts
 
 ## 配置
 
-Plugins → dsh-tts（设置 ns：`dsh-tts`）：
+**插件管理 → dsh-tts** 即打开可视化配置卡片（v0.1.2+ 由本包客户端半 `lib/client.js` 渲染）：端点 URL、模型、默认音色（预置下拉 + VoiceDesign 自定义描述）、语言、风格指令、格式、采样率、输出目录、超时、apiKey（secret），并有「测试连通性」按钮实时探测服务端已加载模型与音色列表。保存即生效，无需重启。字段语义：
 
 | 字段 | 默认 | 说明 |
 |---|---|---|
